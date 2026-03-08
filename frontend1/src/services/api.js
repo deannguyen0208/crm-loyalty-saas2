@@ -1,11 +1,16 @@
-import axios from "axios";
+const API_BASE = 'http://localhost:8000';
 
-const api = axios.create({
-  baseURL: import.meta.env.VITE_API_URL,
-  withCredentials: true, // để gửi cookie chứa JWT
-});
+export async function api(path, options = {}) {
+  const response = await fetch(`${API_BASE}${path}`, {
+    headers: { 'Content-Type': 'application/json', ...(options.headers || {}) },
+    ...options,
+  });
 
-export const getCustomers = () => api.get("/customers").then((res) => res.data);
-export const createCustomer = (data) =>
-  api.post("/customers", data).then((res) => res.data);
-// ... các hàm khác
+  if (!response.ok) {
+    const message = await response.text();
+    throw new Error(message || 'API error');
+  }
+
+  const contentType = response.headers.get('content-type') || '';
+  return contentType.includes('application/json') ? response.json() : response.text();
+}
