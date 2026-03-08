@@ -2,8 +2,20 @@
   "python.defaultInterpreterPath": "E:\\Alo2\\crm-loyalty-saas2\\backend\\venv\\Scripts\\python.exe",
   "python.terminal.activateEnvironment": true,
   "python.terminal.activateEnvInCurrentTerminal": true,
-  "python.linting.enabled": true,
-  "python.linting.pylintEnabled": false,
-  "python.linting.flake8Enabled": true,
-  "python.formatting.provider": "black"
+  "python.languageServer": "Pylance",
+  "python.analysis.autoImportCompletions": true,
+  "python.analysis.indexing": true,
+  "python.analysis.packageIndexDepths": [
+    {
+      "name": "sqlalchemy",
+      "depth": 3
+    }
+  ],
+  "terminal.integrated.defaultProfile.windows": "PowerShell",
+  "terminal.integrated.profiles.windows": {
+    "PowerShell": {
+      "source": "PowerShell",
+      "icon": "terminal-powershell"
+    }
+  }
 }
